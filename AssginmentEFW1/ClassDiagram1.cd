@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AssginmentEFW1.Migrations.intialCreate" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20250215010638_intialCreate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssginmentEFW1.Migrations.EnterpriceDBContextModelSnapshot" Collapsed="true">
+    <Position X="6.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Migrations\EnterpriceDBContextModelSnapshot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssginmentEFW1.Course" Collapsed="true">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAmgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Course.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssginmentEFW1.CourseInst" Collapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAEAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CourseInst.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssginmentEFW1.Department" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAgQAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Department.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssginmentEFW1.EnterpriceDBContext" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgKAAAgAAYAAAAAAACAEAAgAEAAAAAAAAIAAADAAAAA=</HashCode>
+      <FileName>EnterpriceDBContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssginmentEFW1.Instructor" Collapsed="true">
+    <Position X="8" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAACAAAAAAgAAAAAAAAAQAAgAAAAASAAAAAAAAAAA=</HashCode>
+      <FileName>Instructor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssginmentEFW1.Program" Collapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssginmentEFW1.StudCourse" Collapsed="true">
+    <Position X="6.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAGAAAQAAAAAAAAIAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>StudCourse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssginmentEFW1.Student" Collapsed="true">
+    <Position X="8" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgBAAAEgAAAAEAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Student.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AssginmentEFW1.Topic" Collapsed="true">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Topic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
