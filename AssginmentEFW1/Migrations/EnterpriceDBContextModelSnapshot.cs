@@ -24,11 +24,11 @@ namespace AssginmentEFW1.Migrations
 
             modelBuilder.Entity("AssginmentEFW1.Course", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("CourseID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CourseID"));
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -43,7 +43,9 @@ namespace AssginmentEFW1.Migrations
                     b.Property<int>("TopId")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("CourseID");
+
+                    b.HasIndex("TopId");
 
                     b.ToTable("Courses");
                 });
@@ -51,20 +53,20 @@ namespace AssginmentEFW1.Migrations
             modelBuilder.Entity("AssginmentEFW1.CourseInst", b =>
                 {
                     b.Property<int>("InstId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InstId"));
 
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
                     b.Property<string>("Evaluate")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("InstId");
+                    b.HasKey("InstId", "CourseId");
 
-                    b.ToTable("CourseInstructor", (string)null);
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("CourseInsts");
                 });
 
             modelBuilder.Entity("AssginmentEFW1.Department", b =>
@@ -78,13 +80,15 @@ namespace AssginmentEFW1.Migrations
                     b.Property<DateTime>("HiringDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Ins_ID")
+                    b.Property<int?>("Ins_ID")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Dep_Id");
+
+                    b.HasIndex("Ins_ID");
 
                     b.ToTable("Departments");
                 });
@@ -103,7 +107,7 @@ namespace AssginmentEFW1.Migrations
                     b.Property<decimal>("Bonus")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Dept_ID")
+                    b.Property<int?>("Dept_ID")
                         .HasColumnType("int");
 
                     b.Property<decimal>("HourRate")
@@ -117,36 +121,28 @@ namespace AssginmentEFW1.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("Dept_ID");
+
                     b.ToTable("Instructors");
                 });
 
             modelBuilder.Entity("AssginmentEFW1.StudCourse", b =>
                 {
-                    b.Property<int>("stud_ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("stud_ID"));
-
-                    b.Property<int?>("CourseID")
+                    b.Property<int>("Stud_ID")
                         .HasColumnType("int");
 
                     b.Property<int>("Course_ID")
                         .HasColumnType("int");
 
                     b.Property<string>("Grade")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("StudentID")
-                        .HasColumnType("int");
+                    b.HasKey("Stud_ID", "Course_ID");
 
-                    b.HasKey("stud_ID");
+                    b.HasIndex("Course_ID");
 
-                    b.HasIndex("CourseID");
-
-                    b.HasIndex("StudentID");
-
-                    b.ToTable("StudentCourse", (string)null);
+                    b.ToTable("StudCourses");
                 });
 
             modelBuilder.Entity("AssginmentEFW1.Student", b =>
@@ -163,7 +159,7 @@ namespace AssginmentEFW1.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<int>("Dep_Id")
+                    b.Property<int>("DepId")
                         .HasColumnType("int");
 
                     b.Property<string>("FName")
@@ -173,6 +169,8 @@ namespace AssginmentEFW1.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("DepId");
 
                     b.ToTable("Students");
                 });
@@ -193,19 +191,110 @@ namespace AssginmentEFW1.Migrations
                     b.ToTable("Topics");
                 });
 
+            modelBuilder.Entity("AssginmentEFW1.Course", b =>
+                {
+                    b.HasOne("AssginmentEFW1.Topic", "Topic")
+                        .WithMany("Courses")
+                        .HasForeignKey("TopId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Topic");
+                });
+
+            modelBuilder.Entity("AssginmentEFW1.CourseInst", b =>
+                {
+                    b.HasOne("AssginmentEFW1.Course", "Course")
+                        .WithMany("CourseInsts")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AssginmentEFW1.Instructor", "Instructor")
+                        .WithMany("CourseInsts")
+                        .HasForeignKey("InstId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Instructor");
+                });
+
+            modelBuilder.Entity("AssginmentEFW1.Department", b =>
+                {
+                    b.HasOne("AssginmentEFW1.Instructor", "Instructor")
+                        .WithMany()
+                        .HasForeignKey("Ins_ID");
+
+                    b.Navigation("Instructor");
+                });
+
+            modelBuilder.Entity("AssginmentEFW1.Instructor", b =>
+                {
+                    b.HasOne("AssginmentEFW1.Department", "Department")
+                        .WithMany()
+                        .HasForeignKey("Dept_ID")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Department");
+                });
+
             modelBuilder.Entity("AssginmentEFW1.StudCourse", b =>
                 {
                     b.HasOne("AssginmentEFW1.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseID");
+                        .WithMany("StudCourses")
+                        .HasForeignKey("Course_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AssginmentEFW1.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentID");
+                        .WithMany("StudCourses")
+                        .HasForeignKey("Stud_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Course");
 
                     b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("AssginmentEFW1.Student", b =>
+                {
+                    b.HasOne("AssginmentEFW1.Department", "Department")
+                        .WithMany("Students")
+                        .HasForeignKey("DepId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("AssginmentEFW1.Course", b =>
+                {
+                    b.Navigation("CourseInsts");
+
+                    b.Navigation("StudCourses");
+                });
+
+            modelBuilder.Entity("AssginmentEFW1.Department", b =>
+                {
+                    b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("AssginmentEFW1.Instructor", b =>
+                {
+                    b.Navigation("CourseInsts");
+                });
+
+            modelBuilder.Entity("AssginmentEFW1.Student", b =>
+                {
+                    b.Navigation("StudCourses");
+                });
+
+            modelBuilder.Entity("AssginmentEFW1.Topic", b =>
+                {
+                    b.Navigation("Courses");
                 });
 #pragma warning restore 612, 618
         }
