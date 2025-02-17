@@ -10,14 +10,16 @@ namespace AssginmentEFW1
 {
     public class StudCourse
     {
-        [Key]
-        public int stud_ID { get; set; }
+        [ForeignKey("Student")]
+        public int Stud_ID { get; set; }
+        public Student Student { get; set; }
 
+        [ForeignKey("Course")]
         public int Course_ID { get; set; }
+        public Course Course { get; set; }
 
-        public string? Grade { get; set; }
-        public virtual Student? Student { get; set; }
-        public virtual Course? Course { get; set; }
+        public string Grade { get; set; }
+
     }
 
 }
